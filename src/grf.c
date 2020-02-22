@@ -1306,8 +1306,6 @@ grf_extract (Grf *grf, const char *grfname, const char *file, GrfError *error)
 	return grf_index_extract (grf, i, file, error);
 }
 
-#include <iconv.h>
-
 /** Extract to a file, taking index instead of filename.
  *
  * @param grf Pointer to a Grf structure, as returned by grf_callback_open()
@@ -1336,10 +1334,6 @@ grf_index_extract (Grf *grf, uint32_t index, const char *file, GrfError *error)
 		return 0;
 	}
 	GRF_normalize_path (fixedname,file);
-
-	// TODO: euc-kr ~> utf-8
-	iconv_t ic = iconv_open("UTF-8", "EUC-KR");
-	iconv_close(ic);
 
 	/* Read the data */
 	if ((buf = grf_index_get (grf, index, &size, error)) == NULL) {
