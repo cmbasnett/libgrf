@@ -8,10 +8,9 @@ include_directories(include)
 find_package(ZLIB REQUIRED)
 include_directories(ZLIB_INCLUDE_DIRS)
 
-find_package(ICONV REQUIRED)
-
 set(GRF_SRC src/grf.c src/grfcrypt.c src/grfsupport.c src/rgz.c)
 
-add_library(grf SHARED ${GRF_SRC})
+add_library(grf ${GRF_SRC})
+set_property(TARGET grf PROPERTY POSITION_INDEPENDENT_CODE ON)
 
-target_link_libraries(grf ${ZLIB_LIBRARIES} iconv)
+target_link_libraries(grf ${ZLIB_LIBRARIES})
