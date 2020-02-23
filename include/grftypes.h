@@ -143,6 +143,12 @@ GRFEXTERN_BEGIN
 #define _ftelli64 ftello
 #endif /* __APPLE_CC__ */
 
+#ifdef __linux__
+#define __int64 int64_t
+#define _fseeki64 fseeko
+#define _ftelli64 ftello
+#endif
+
 /* Make sure we have NULL, because its used all the time */
 #ifndef NULL
 	#define NULL ((void *) 0)
