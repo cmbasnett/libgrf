@@ -1,3 +1,5 @@
+![build](https://github.com/cmbasnett/libgrf/workflows/build/badge.svg)
+
 # libgrf
 libgrf is a library for reading and writing GRF archives.
 
