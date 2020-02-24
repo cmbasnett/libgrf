@@ -14,6 +14,7 @@ jobs:
       if: "contains( matrix.os, 'windows')"
       uses: lukka/run-vcpkg@v0.10
       with:
+        vcpkgGitCommitId: '7aebb48'
         vcpkgArguments: 'zlib'
     - name: configure (windows)
       if: "contains( matrix.os, 'windows')"
