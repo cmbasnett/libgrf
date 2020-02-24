@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: configure (windows)
-      if: matrix.os == windows-latest
+      if: matrix.os == "windows-latest"
       shell: cmd
       run: mkdir build && cd build && cmake ..
     - name: configure
