@@ -10,8 +10,11 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
     - uses: actions/checkout@v2
-    - name: configure
+    - name: configure (windows)
+      if: matrix.os == windows-latest
       shell: cmd
+      run: mkdir build && cd build && cmake ..
+    - name: configure
       run: mkdir build && cd build && cmake ..
     - name: build
       run: cmake --build build
