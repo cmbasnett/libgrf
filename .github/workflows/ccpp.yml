@@ -10,6 +10,11 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
     - uses: actions/checkout@v2
+    - name: run-vcpkg
+      if: matrix.os == 'windows.latest'
+      uses: lukka/run-vcpkg@v0.10
+      with:
+        vcpkgArguments: 'zlib'
     - name: configure (windows)
       if: matrix.os == 'windows-latest'
       shell: cmd
