@@ -11,16 +11,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: run-vcpkg
-      if: matrix.os == 'windows.latest'
+      if: "contains( matrix.os, 'windows')"
       uses: lukka/run-vcpkg@v0.10
       with:
         vcpkgArguments: 'zlib'
     - name: configure (windows)
-      if: matrix.os == 'windows-latest'
+      if: "contains( matrix.os, 'windows')"
       shell: cmd
       run: mkdir build && cd build && cmake ..
     - name: configure
-      if: matrix.os != 'windows-latest'
+      if: "!contains( matrix.os, 'windows')"
       run: mkdir build && cd build && cmake ..
     - name: build
       run: cmake --build build
