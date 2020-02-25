@@ -1319,7 +1319,7 @@ grf_index_extract (Grf *grf, uint32_t index, const char *file, GrfError *error)
 {
 	void *buf;
 	char *fixedname;
-	uint32_t size,i;
+	uint32_t size = 0, i = 0;
 	FILE *f;
 
 	/* Make sure we have a filename to write to */
@@ -1352,9 +1352,13 @@ grf_index_extract (Grf *grf, uint32_t index, const char *file, GrfError *error)
 	}
 
 	/* Write the data */
-	i = (uint32_t) fwrite (buf, size, 1, f);
-	if (0 == i) {  /* NOTE: size_t => uint32_t conversion */
-		GRF_SETERR (error, GE_ERRNO, fwrite);
+	if (size > 0) {
+        i = (uint32_t) fwrite (buf, size, 1, f);
+        if (0 == i) {  /* NOTE: size_t => uint32_t conversion */
+            GRF_SETERR (error, GE_ERRNO, fwrite);
+        }
+	} else {
+        i = 1;
 	}
 
 	/* Clean up and return */
